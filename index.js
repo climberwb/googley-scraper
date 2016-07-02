@@ -1,17 +1,8 @@
 var google = require('./modified_google')
 var request = require('request')
 var cheerio = require('cheerio')
-var get_data = function(){
-  google.resultsPerPage = 30;
-  google.timeSpan = 'h';
-  var nextCounter = 0
-  
-  google('buyout', function (err, res){
-    if (err) console.error(err)
-   
-    for (var i = 0; i < res.links.length; ++i) {
-      
-      var link = res.links[i];
+
+var request_from_link = function(link){
       console.log(link.title+": "+link.href);
       // BELOW ADDED CODE
       var requestOptions = {
@@ -22,18 +13,23 @@ var get_data = function(){
         if ((err == null) && resp.statusCode === 200) {
           var $ = cheerio.load(body)
           var res = {
-            // url: newUrl,
-            // query: query,
-            // start: start,
-            // links: [],
             $: $,
             body: body
           }
           console.log(res.body)
         }
       })
-      // above added code
-    }
+}
+
+var get_data_from_google = function(search_terms){
+  google.resultsPerPage = 30;
+  google.timeSpan = 'h';
+  var nextCounter = 0
+  
+  google(search_terms, function (err, res){
+    if (err) console.error(err)
+    
+    res.links.forEach(request_from_link);
   
     if (nextCounter < 4) {
       nextCounter += 1
@@ -41,7 +37,7 @@ var get_data = function(){
     }
   })
 }
-get_data();
+get_data_from_google("buyout");
 // https://github.com/simov/express-admin
 
 //http://www.spacjer.com/blog/2014/02/10/defining-node-dot-js-task-for-heroku-scheduler/
