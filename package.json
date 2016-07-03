@@ -11,8 +11,12 @@
   "dependencies": {
     "cheerio": "^0.20.0",
     "pg": "^6.0.1",
+    "pg-hstore": "^2.3.2",
     "querystring": "^0.2.0",
     "request": "^2.72.0",
+    "sequelize": "^3.23.4",
+    "sqlite3": "^3.1.4",
+    "tedious": "^1.14.0",
     "util": "^0.10.3"
   },
   "devDependencies": {
