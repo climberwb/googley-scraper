@@ -1,5 +1,5 @@
-// This code was modified from the node-google library
-
+// This code was modified from the node-google libraryn
+// http://proxymesh.com/pricing/
 var request = require('request')
 var cheerio = require('cheerio')
 var querystring = require('querystring')

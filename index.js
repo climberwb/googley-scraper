@@ -1,7 +1,10 @@
 var google = require('./modified_google')
 var request = require('request')
 var cheerio = require('cheerio')
-
+//http://stackoverflow.com/questions/7452444/node-js-on-heroku-postgresql-on-prod-sqlite3-on-dev
+// http://blog.modulus.io/nodejs-and-sqlite
+// THis is how to link to sql databases
+// docs.sequelizejs.com/en/latest/docs/getting-started/
 var request_from_link = function(link){
       console.log(link.title+": "+link.href);
       // BELOW ADDED CODE
